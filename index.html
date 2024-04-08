@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projecte cookie</title>
+</head>
+<body>
+ <div id="capa" style="display: none;">
+     <img id ="foto" src="cookies.gif"  />
+ </div>
+</body>
+<script type="text/javascript">
+// Comprovar si existeix la cookie "lastVisit"
+// alert(getCookie("clau")); 
+if (getCookie("clau")) {
+    // Obtenir la data de la darrera visita des de la cookie
+    var clau = getCookie("clau");
+    alert("clau activa"); 
+    document.getElementById("capa").style.display = "block";             
+} else {
+    // Mostrar un missatge si no existeix la cookie
+    var codi = prompt("Indica el codi d'accés "); 
+if(codi=="1234") {
+    var expira = new Date();
+    expira.setTime(expira.getTime() + (1000 * 60));
+    document.cookie = "clau=" + codi + ";expires=" + expira.toUTCString();
+    alert("Codi correcte" )
+    document.getElementById("capa").style.display = "block";
+} else  {
+        alert("Codi incorrecte"); 
+        document.getElementById("capa").style.display = "none";
+}
+
+}
+// Funció per obtenir el valor d'una cookie
+function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts[1].split(";")[0]
+}
+</script>
+</html>
