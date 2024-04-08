@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Pràctica de cookies</p>
+    <script>
+        var currentDate = new Date();
+        //Comprovar si existeix la cookie "lastVisit"
+        if (getCookie("lastVisit")) {
+            //Obtenir la data de la darrera visita de la cookie
+            var lastVisit= new Date(getCookie("lastVisit"));
+            //Calcular la diferència entre la data actual i la data de la darrera visita
+            var timeSinceLastVisit = currentDate -lastVisit;
+            //Mostrar la diferència en hores
+            alert ("Fa " + timeSinceLastVisit / 1000 + " segons des de la teva darrera visita.");
+        } else {
+            //Mostrar un missatge si no existeix la cookie
+            alert ("Benvingut a la nostra pàgina web! És la teva primera visita!");
+        }
+        //Definir la cookie "lastVisit" amb la data actual
+        document.cookie = "lastVisit=" + currentDate;
+        //Funció per obtenir el valor d'una cookie
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts =value.split("; "+ name + "=");
+            if (parts.length == 2) return parts[1].split(";")[0]
+        }
+    </script>
+</body>
+</html>
